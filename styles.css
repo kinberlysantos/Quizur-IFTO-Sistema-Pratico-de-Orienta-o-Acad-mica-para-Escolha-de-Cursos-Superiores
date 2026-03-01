@@ -1,0 +1,131 @@
+/* Reset simples */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  background-color: #f3f4f6;
+  color: #1f2937;
+}
+
+/* HEADER */
+.header {
+  background-color: #1e3a8a;
+  color: white;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.header h1 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+/* NAV */
+.nav {
+  background-color: #1e40af;
+  padding: 1rem;
+}
+
+.nav ul {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.nav a:hover {
+  opacity: 0.7;
+}
+
+/* MAIN */
+.main {
+  padding: 2.5rem 1rem;
+}
+
+/* CARD */
+.card {
+  max-width: 768px;
+  margin: 0 auto 2.5rem auto;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.card h2 {
+  color: #1e3a8a;
+  margin-bottom: 1.5rem;
+}
+
+/* FORM */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.fieldset {
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 1rem;
+}
+
+.fieldset legend {
+  padding: 0 0.5rem;
+  font-weight: 600;
+  color: #1e40af;
+}
+
+/* Perguntas empilhadas */
+.questions {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* aqui controlamos o espaço entre perguntas */
+}
+
+.question label {
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+select {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+}
+
+/* BOTÃO */
+.btn {
+  background-color: #1e3a8a;
+  color: white;
+  padding: 0.9rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn:hover {
+  background-color: #1e40af;
+}
+
+/* FOOTER */
+.footer {
+  background-color: #1e3a8a;
+  color: white;
+  text-align: center;
+  padding: 1.5rem;
+}

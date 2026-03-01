@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quizur IFTO - Orientação Acadêmica</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<header class="header">
+  <h1>Quizur IFTO</h1>
+  <p>Sistema Prático de Orientação Acadêmica</p>
+</header>
+
+<nav class="nav">
+  <ul>
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#quiz">Quiz</a></li>
+    <li><a href="#resultado">Resultado</a></li>
+  </ul>
+</nav>
+
+<main class="main">
+
+<section id="sobre" class="card">
+  <h2>Sobre o Projeto</h2>
+  <p>
+    Ferramenta anônima de apoio à escolha do curso superior no IFTO Campus Araguaína.
+    O objetivo é reduzir a evasão acadêmica e auxiliar na tomada de decisão consciente.
+  </p>
+</section>
+
+<section id="quiz" class="card">
+  <h2>Questionário de Perfil Vocacional</h2>
+
+  <form class="form">
+
+    <!-- 10 PERGUNTAS -->
+    <fieldset class="fieldset">
+      <legend>1. Qual área mais desperta seu interesse?</legend>
+      <div class="questions">
+        <label><input type="radio" name="q1" required> Saúde</label>
+        <label><input type="radio" name="q1"> Tecnologia</label>
+        <label><input type="radio" name="q1"> Gestão</label>
+        <label><input type="radio" name="q1"> Laboratório</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="fieldset">
+      <legend>2. Você prefere trabalhar:</legend>
+      <div class="questions">
+        <label><input type="radio" name="q2" required> Com pessoas</label>
+        <label><input type="radio" name="q2"> Com sistemas</label>
+        <label><input type="radio" name="q2"> Com processos organizacionais</label>
+        <label><input type="radio" name="q2"> Com análises técnicas</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="fieldset">
+      <legend>3. Seu perfil é mais:</legend>
+      <div class="questions">
+        <label><input type="radio" name="q3" required> Investigativo</label>
+        <label><input type="radio" name="q3"> Analítico</label>
+        <label><input type="radio" name="q3"> Empreendedor</label>
+        <label><input type="radio" name="q3"> Assistencial</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="fieldset">
+      <legend>4. Você gosta de atividades:</legend>
+      <div class="questions">
+        <label><input type="radio" name="q4" required> Clínicas</label>
+        <label><input type="radio" name="q4"> Programação</label>
+        <label><input type="radio" name="q4"> Planejamento estratégico</label>
+        <label><input type="radio" name="q4"> Análises laboratoriais</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="fieldset">
+      <legend>5. Prefere resolver problemas:</legend>
+      <div class="questions">
+        <label><input type="radio" name="q5" required> De saúde pública</label>
+        <label><input type="radio" name="q5"> Tecnológicos</label>
+        <label><input type="radio" name="q5"> Organizacionais</label>
+        <label><input type="radio" name="q5"> Científicos</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="fieldset">
+      <legend>6. Seu ambiente ideal de trabalho:</legend>
+      <div class="questions">
+        <label><input type="radio" name="q6" required> Hospital ou clínica</label>
+        <label><input type="radio" name="q6"> Escritório ou empresa de TI</label>
+        <label><input type="radio" name="q6"> Empresa ou indústria</label>
+        <label><input type="radio" name="q6"> Laboratório</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="fieldset">
+      <legend>7. Você prefere atividades:</legend>
+      <div class="questions">
+        <label><input type="radio" name="q7" required> Humanizadas</label>
+        <label><input type="radio" name="q7"> Técnicas</label>
+        <label><input type="radio" name="q7"> Gerenciais</label>
+        <label><input type="radio" name="q7"> Científicas</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="fieldset">
+      <legend>8. Seu foco principal seria:</legend>
+      <div class="questions">
+        <label><input type="radio" name="q8" required> Cuidado com pacientes</label>
+        <label><input type="radio" name="q8"> Desenvolvimento de software</label>
+        <label><input type="radio" name="q8"> Gestão de processos</label>
+        <label><input type="radio" name="q8"> Análise de materiais biológicos</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="fieldset">
+      <legend>9. Você se identifica mais com:</legend>
+      <div class="questions">
+        <label><input type="radio" name="q9" required> Farmácia</label>
+        <label><input type="radio" name="q9"> ADS</label>
+        <label><input type="radio" name="q9"> GPI</label>
+        <label><input type="radio" name="q9"> Enfermagem/Análises Clínicas</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="fieldset">
+      <legend>10. Você busca uma carreira:</legend>
+      <div class="questions">
+        <label><input type="radio" name="q10" required> Na área da saúde</label>
+        <label><input type="radio" name="q10"> Na área tecnológica</label>
+        <label><input type="radio" name="q10"> Na área de gestão</label>
+        <label><input type="radio" name="q10"> Na área laboratorial</label>
+      </div>
+    </fieldset>
+
+    <button type="submit" class="btn">Ver Resultado</button>
+
+  </form>
+</section>
+
+<section id="resultado" class="card">
+  <h2>Curso Recomendado</h2>
+
+  <article class="resultado-box">
+    <h3 id="curso-nome">Nome do Curso</h3>
+
+    <img src="img/placeholder.jpg" alt="Imagem do curso ou laboratório do campus" class="curso-img">
+
+    <p><strong>Duração:</strong> 4 anos</p>
+    <p><strong>Turno:</strong> Noturno/Integral</p>
+    <p><strong>Áreas de atuação:</strong> Descrição resumida das áreas profissionais.</p>
+
+    <a 
+      href="https://www.ifto.edu.br/araguaina" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      class="btn-institucional"
+    >
+      Acessar Portal Oficial do IFTO
+    </a>
+
+  </article>
+</section>
+
+</main>
+
+<footer class="footer">
+  <p>Instituto Federal do Tocantins - Campus Araguaína</p>
+</footer>
+
+</body>
+</html>
