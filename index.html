@@ -4,174 +4,287 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quizur IFTO - Orientação Acadêmica</title>
+  <link rel="icon" type="image/png" href="logo.png">
   <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-<header class="header">
-  <h1>Quizur IFTO</h1>
-  <p>Sistema Prático de Orientação Acadêmica</p>
+<header class="header-container">
+  <div class="header-content">
+    <div class="logo"><img src="logo.png" alt="Quizur IFTO Logo" style="height: 40px; vertical-align: middle; margin-right: 10px;">Quizur IFTO</div>
+    <div class="progress-info">Questão <span id="current-step">1</span> de 10</div>
+  </div>
+  <div class="progress-bar-container">
+    <div class="progress-bar-fill" id="progress-bar" style="width: 10%;"></div>
+  </div>
 </header>
 
-<nav class="nav">
-  <ul>
-    <li><a href="#sobre">Sobre</a></li>
-    <li><a href="#quiz">Quiz</a></li>
-    <li><a href="#resultado">Resultado</a></li>
-  </ul>
-</nav>
+<main class="main-container">
 
-<main class="main">
+  <section id="sobre" class="section-intro">
+    <h2>Orientação Acadêmica</h2>
+    <p>Descubra qual curso do IFTO Campus Araguaína combina com você.</p>
+  </section>
 
-<section id="sobre" class="card">
-  <h2>Sobre o Projeto</h2>
-  <p>
-    Ferramenta anônima de apoio à escolha do curso superior no IFTO Campus Araguaína.
-    O objetivo é reduzir a evasão acadêmica e auxiliar na tomada de decisão consciente.
-  </p>
-</section>
-
-<section id="quiz" class="card">
-  <h2>Questionário de Perfil Vocacional</h2>
-
-  <form class="form">
-
-    <!-- 10 PERGUNTAS -->
-    <fieldset class="fieldset">
-      <legend>1. Qual área mais desperta seu interesse?</legend>
-      <div class="questions">
-        <label><input type="radio" name="q1" required> Saúde</label>
-        <label><input type="radio" name="q1"> Tecnologia</label>
-        <label><input type="radio" name="q1"> Gestão</label>
-        <label><input type="radio" name="q1"> Laboratório</label>
+  <form id="quiz-form">
+    
+    <!-- Pergunta 1 -->
+    <article class="question-card" id="q1">
+      <div class="question-image" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800');"></div>
+      <div class="question-body">
+        <span class="category-label">Interesses</span>
+        <h3 class="question-text">1. Qual área mais desperta seu interesse?</h3>
+        <div class="options-group">
+          <label class="option-card"><input type="radio" name="q1" value="A" required><span class="option-letter">A</span><span class="option-text">Saúde e Bem-estar</span></label>
+          <label class="option-card"><input type="radio" name="q1" value="B"><span class="option-letter">B</span><span class="option-text">Tecnologia e Inovação</span></label>
+          <label class="option-card"><input type="radio" name="q1" value="C"><span class="option-letter">C</span><span class="option-text">Gestão e Negócios</span></label>
+          <label class="option-card"><input type="radio" name="q1" value="D"><span class="option-letter">D</span><span class="option-text">Pesquisa e Laboratório</span></label>
+        </div>
       </div>
-    </fieldset>
+    </article>
 
-    <fieldset class="fieldset">
-      <legend>2. Você prefere trabalhar:</legend>
-      <div class="questions">
-        <label><input type="radio" name="q2" required> Com pessoas</label>
-        <label><input type="radio" name="q2"> Com sistemas</label>
-        <label><input type="radio" name="q2"> Com processos organizacionais</label>
-        <label><input type="radio" name="q2"> Com análises técnicas</label>
+    <!-- Pergunta 2 -->
+    <article class="question-card" id="q2" style="display: none;">
+      <div class="question-image" style="background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800');"></div>
+      <div class="question-body">
+        <span class="category-label">Ambiente</span>
+        <h3 class="question-text">2. Você prefere trabalhar:</h3>
+        <div class="options-group">
+          <label class="option-card"><input type="radio" name="q2" value="A"><span class="option-letter">A</span><span class="option-text">Lidando diretamente com pessoas</span></label>
+          <label class="option-card"><input type="radio" name="q2" value="B"><span class="option-letter">B</span><span class="option-text">Desenvolvendo sistemas e lógica</span></label>
+          <label class="option-card"><input type="radio" name="q2" value="C"><span class="option-letter">C</span><span class="option-text">Organizando processos e empresas</span></label>
+          <label class="option-card"><input type="radio" name="q2" value="D"><span class="option-letter">D</span><span class="option-text">Realizando análises técnicas e científicas</span></label>
+        </div>
       </div>
-    </fieldset>
+    </article>
 
-    <fieldset class="fieldset">
-      <legend>3. Seu perfil é mais:</legend>
-      <div class="questions">
-        <label><input type="radio" name="q3" required> Investigativo</label>
-        <label><input type="radio" name="q3"> Analítico</label>
-        <label><input type="radio" name="q3"> Empreendedor</label>
-        <label><input type="radio" name="q3"> Assistencial</label>
+    <!-- Pergunta 3 -->
+    <article class="question-card" id="q3" style="display: none;">
+      <div class="question-image" style="background-image: url('https://images.unsplash.com/photo-1454165833767-027ffea9e77b?q=80&w=800');"></div>
+      <div class="question-body">
+        <span class="category-label">Perfil</span>
+        <h3 class="question-text">3. Seu perfil comportamental é mais:</h3>
+        <div class="options-group">
+          <label class="option-card"><input type="radio" name="q3" value="A"><span class="option-letter">A</span><span class="option-text">Assistencial e empático</span></label>
+          <label class="option-card"><input type="radio" name="q3" value="B"><span class="option-letter">B</span><span class="option-text">Investigativo e focado em detalhes</span></label>
+          <label class="option-card"><input type="radio" name="q3" value="C"><span class="option-letter">C</span><span class="option-text">Liderança e visão estratégica</span></label>
+          <label class="option-card"><input type="radio" name="q3" value="D"><span class="option-letter">D</span><span class="option-text">Analítico e metódico</span></label>
+        </div>
       </div>
-    </fieldset>
+    </article>
 
-    <fieldset class="fieldset">
-      <legend>4. Você gosta de atividades:</legend>
-      <div class="questions">
-        <label><input type="radio" name="q4" required> Clínicas</label>
-        <label><input type="radio" name="q4"> Programação</label>
-        <label><input type="radio" name="q4"> Planejamento estratégico</label>
-        <label><input type="radio" name="q4"> Análises laboratoriais</label>
+    <!-- Pergunta 4 -->
+    <article class="question-card" id="q4" style="display: none;">
+      <div class="question-image" style="background-image: url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800');"></div>
+      <div class="question-body">
+        <span class="category-label">Habilidades</span>
+        <h3 class="question-text">4. Você gosta de atividades que envolvem:</h3>
+        <div class="options-group">
+          <label class="option-card"><input type="radio" name="q4" value="A"><span class="option-letter">A</span><span class="option-text">Cuidados clínicos e saúde pública</span></label>
+          <label class="option-card"><input type="radio" name="q4" value="B"><span class="option-letter">B</span><span class="option-text">Programação e criação de softwares</span></label>
+          <label class="option-card"><input type="radio" name="q4" value="C"><span class="option-letter">C</span><span class="option-text">Planejamento e gestão industrial</span></label>
+          <label class="option-card"><input type="radio" name="q4" value="D"><span class="option-letter">D</span><span class="option-text">Exames laboratoriais e diagnósticos</span></label>
+        </div>
       </div>
-    </fieldset>
+    </article>
 
-    <fieldset class="fieldset">
-      <legend>5. Prefere resolver problemas:</legend>
-      <div class="questions">
-        <label><input type="radio" name="q5" required> De saúde pública</label>
-        <label><input type="radio" name="q5"> Tecnológicos</label>
-        <label><input type="radio" name="q5"> Organizacionais</label>
-        <label><input type="radio" name="q5"> Científicos</label>
+    <!-- Pergunta 5 -->
+    <article class="question-card" id="q5" style="display: none;">
+      <div class="question-image" style="background-image: url('https://images.unsplash.com/photo-1507413245164-6160d8298b31?q=80&w=800');"></div>
+      <div class="question-body">
+        <span class="category-label">Resolução</span>
+        <h3 class="question-text">5. Prefere resolver problemas relacionados a:</h3>
+        <div class="options-group">
+          <label class="option-card"><input type="radio" name="q5" value="A"><span class="option-letter">A</span><span class="option-text">Bem-estar físico e prevenção</span></label>
+          <label class="option-card"><input type="radio" name="q5" value="B"><span class="option-letter">B</span><span class="option-text">Falhas de sistema e automação</span></label>
+          <label class="option-card"><input type="radio" name="q5" value="C"><span class="option-letter">C</span><span class="option-text">Eficiência e produtividade organizacional</span></label>
+          <label class="option-card"><input type="radio" name="q5" value="D"><span class="option-letter">D</span><span class="option-text">Controle de qualidade e análises químicas</span></label>
+        </div>
       </div>
-    </fieldset>
+    </article>
 
-    <fieldset class="fieldset">
-      <legend>6. Seu ambiente ideal de trabalho:</legend>
-      <div class="questions">
-        <label><input type="radio" name="q6" required> Hospital ou clínica</label>
-        <label><input type="radio" name="q6"> Escritório ou empresa de TI</label>
-        <label><input type="radio" name="q6"> Empresa ou indústria</label>
-        <label><input type="radio" name="q6"> Laboratório</label>
+    <!-- Pergunta 6 -->
+    <article class="question-card" id="q6" style="display: none;">
+      <div class="question-image" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800');"></div>
+      <div class="question-body">
+        <span class="category-label">Local de Trabalho</span>
+        <h3 class="question-text">6. Seu ambiente ideal de trabalho seria:</h3>
+        <div class="options-group">
+          <label class="option-card"><input type="radio" name="q6" value="A"><span class="option-letter">A</span><span class="option-text">Hospital, clínica ou posto de saúde</span></label>
+          <label class="option-card"><input type="radio" name="q6" value="B"><span class="option-letter">B</span><span class="option-text">Empresa de tecnologia ou home office</span></label>
+          <label class="option-card"><input type="radio" name="q6" value="C"><span class="option-letter">C</span><span class="option-text">Indústria ou grandes corporações</span></label>
+          <label class="option-card"><input type="radio" name="q6" value="D"><span class="option-letter">D</span><span class="option-text">Laboratório de análises ou pesquisa</span></label>
+        </div>
       </div>
-    </fieldset>
+    </article>
 
-    <fieldset class="fieldset">
-      <legend>7. Você prefere atividades:</legend>
-      <div class="questions">
-        <label><input type="radio" name="q7" required> Humanizadas</label>
-        <label><input type="radio" name="q7"> Técnicas</label>
-        <label><input type="radio" name="q7"> Gerenciais</label>
-        <label><input type="radio" name="q7"> Científicas</label>
+    <!-- Pergunta 7 -->
+    <article class="question-card" id="q7" style="display: none;">
+      <div class="question-image" style="background-image: url('https://images.unsplash.com/photo-1551288049-bbbda540d379?q=80&w=800');"></div>
+      <div class="question-body">
+        <span class="category-label">Foco</span>
+        <h3 class="question-text">7. Você prefere atividades predominantemente:</h3>
+        <div class="options-group">
+          <label class="option-card"><input type="radio" name="q7" value="A"><span class="option-letter">A</span><span class="option-text">Humanizadas e de cuidado</span></label>
+          <label class="option-card"><input type="radio" name="q7" value="B"><span class="option-letter">B</span><span class="option-text">Lógicas e matemáticas</span></label>
+          <label class="option-card"><input type="radio" name="q7" value="C"><span class="option-letter">C</span><span class="option-text">Estratégicas e administrativas</span></label>
+          <label class="option-card"><input type="radio" name="q7" value="D"><span class="option-letter">D</span><span class="option-text">Experimentais e técnicas</span></label>
+        </div>
       </div>
-    </fieldset>
+    </article>
 
-    <fieldset class="fieldset">
-      <legend>8. Seu foco principal seria:</legend>
-      <div class="questions">
-        <label><input type="radio" name="q8" required> Cuidado com pacientes</label>
-        <label><input type="radio" name="q8"> Desenvolvimento de software</label>
-        <label><input type="radio" name="q8"> Gestão de processos</label>
-        <label><input type="radio" name="q8"> Análise de materiais biológicos</label>
+    <!-- Pergunta 8 -->
+    <article class="question-card" id="q8" style="display: none;">
+      <div class="question-image" style="background-image: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=800');"></div>
+      <div class="question-body">
+        <span class="category-label">Impacto</span>
+        <h3 class="question-text">8. Seu objetivo profissional principal é:</h3>
+        <div class="options-group">
+          <label class="option-card"><input type="radio" name="q8" value="A"><span class="option-letter">A</span><span class="option-text">Ajudar na recuperação de pacientes</span></label>
+          <label class="option-card"><input type="radio" name="q8" value="B"><span class="option-letter">B</span><span class="option-text">Desenvolver tecnologias disruptivas</span></label>
+          <label class="option-card"><input type="radio" name="q8" value="C"><span class="option-letter">C</span><span class="option-text">Otimizar resultados de organizações</span></label>
+          <label class="option-card"><input type="radio" name="q8" value="D"><span class="option-letter">D</span><span class="option-text">Gerar dados precisos para diagnósticos</span></label>
+        </div>
       </div>
-    </fieldset>
+    </article>
 
-    <fieldset class="fieldset">
-      <legend>9. Você se identifica mais com:</legend>
-      <div class="questions">
-        <label><input type="radio" name="q9" required> Farmácia</label>
-        <label><input type="radio" name="q9"> ADS</label>
-        <label><input type="radio" name="q9"> GPI</label>
-        <label><input type="radio" name="q9"> Enfermagem/Análises Clínicas</label>
+    <!-- Pergunta 9 -->
+    <article class="question-card" id="q9" style="display: none;">
+      <div class="question-image" style="background-image: url('https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=800');"></div>
+      <div class="question-body">
+        <span class="category-label">Identificação</span>
+        <h3 class="question-text">9. Com qual dessas ferramentas você se identifica mais?</h3>
+        <div class="options-group">
+          <label class="option-card"><input type="radio" name="q9" value="A"><span class="option-letter">A</span><span class="option-text">Prontuários e estetoscópios</span></label>
+          <label class="option-card"><input type="radio" name="q9" value="B"><span class="option-letter">B</span><span class="option-text">Computadores e códigos</span></label>
+          <label class="option-card"><input type="radio" name="q9" value="C"><span class="option-letter">C</span><span class="option-text">Planilhas e fluxogramas</span></label>
+          <label class="option-card"><input type="radio" name="q9" value="D"><span class="option-letter">D</span><span class="option-text">Microscópios e reagentes</span></label>
+        </div>
       </div>
-    </fieldset>
+    </article>
 
-    <fieldset class="fieldset">
-      <legend>10. Você busca uma carreira:</legend>
-      <div class="questions">
-        <label><input type="radio" name="q10" required> Na área da saúde</label>
-        <label><input type="radio" name="q10"> Na área tecnológica</label>
-        <label><input type="radio" name="q10"> Na área de gestão</label>
-        <label><input type="radio" name="q10"> Na área laboratorial</label>
+    <!-- Pergunta 10 -->
+    <article class="question-card" id="q10" style="display: none;">
+      <div class="question-image" style="background-image: url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=800');"></div>
+      <div class="question-body">
+        <span class="category-label">Carreira</span>
+        <h3 class="question-text">10. Como você se vê daqui a 5 anos?</h3>
+        <div class="options-group">
+          <label class="option-card"><input type="radio" name="q10" value="A"><span class="option-letter">A</span><span class="option-text">Atuando na linha de frente da saúde</span></label>
+          <label class="option-card"><input type="radio" name="q10" value="B"><span class="option-letter">B</span><span class="option-text">Liderando projetos de software</span></label>
+          <label class="option-card"><input type="radio" name="q10" value="C"><span class="option-letter">C</span><span class="option-text">Gerenciando operações industriais</span></label>
+          <label class="option-card"><input type="radio" name="q10" value="D"><span class="option-letter">D</span><span class="option-text">Trabalhando em um centro de diagnóstico</span></label>
+        </div>
       </div>
-    </fieldset>
+    </article>
 
-    <button type="submit" class="btn">Ver Resultado</button>
+    <div class="nav-buttons">
+      <button type="button" class="btn-prev" id="prev-btn" style="display: none;">Voltar</button>
+      <button type="button" class="btn-next" id="next-btn">Próxima Pergunta</button>
+      <button type="submit" class="btn-next" id="submit-btn" style="display: none;">Ver Resultado</button>
+    </div>
 
   </form>
-</section>
 
-<section id="resultado" class="card">
-  <h2>Curso Recomendado</h2>
-
-  <article class="resultado-box">
-    <h3 id="curso-nome">Nome do Curso</h3>
-
-    <img src="img/placeholder.jpg" alt="Imagem do curso ou laboratório do campus" class="curso-img">
-
-    <p><strong>Duração:</strong> 4 anos</p>
-    <p><strong>Turno:</strong> Noturno/Integral</p>
-    <p><strong>Áreas de atuação:</strong> Descrição resumida das áreas profissionais.</p>
-
-    <a 
-      href="https://www.ifto.edu.br/araguaina" 
-      target="_blank" 
-      rel="noopener noreferrer"
-      class="btn-institucional"
-    >
-      Acessar Portal Oficial do IFTO
-    </a>
-
-  </article>
-</section>
+  <section id="resultado-section" style="display: none; margin-top: 3rem;">
+    <article class="question-card">
+      <div class="question-image" id="result-img"></div>
+      <div class="question-body">
+        <span class="category-label">Resultado do Perfil</span>
+        <h3 class="question-text" id="result-title">Carregando...</h3>
+        <p id="result-desc" style="margin-bottom: 1.5rem; color: var(--neutral-gray);"></p>
+        <a href="https://www.ifto.edu.br/araguaina" target="_blank" class="btn-next" style="display: block; text-align: center; text-decoration: none;">Acessar Portal do Campus</a>
+      </div>
+    </article>
+  </section>
 
 </main>
 
-<footer class="footer">
-  <p>Instituto Federal do Tocantins - Campus Araguaína</p>
+<footer>
+  <p><strong>Instituto Federal do Tocantins - Campus Araguaína</strong><br>
+  © 2026 - Sistema de Orientação Acadêmica</p>
 </footer>
+
+<script>
+  let currentStep = 1;
+  const totalSteps = 10;
+  
+  const nextBtn = document.getElementById('next-btn');
+  const prevBtn = document.getElementById('prev-btn');
+  const submitBtn = document.getElementById('submit-btn');
+  const quizForm = document.getElementById('quiz-form');
+  const progressBar = id => document.getElementById(id);
+
+  function updateStep() {
+    // Esconder todos os cards
+    for(let i=1; i<=totalSteps; i++) {
+      document.getElementById('q'+i).style.display = 'none';
+    }
+    // Mostrar atual
+    document.getElementById('q'+currentStep).style.display = 'block';
+    
+    // Atualizar UI Header
+    document.getElementById('current-step').innerText = currentStep;
+    document.getElementById('progress-bar').style.width = (currentStep * 10) + '%';
+    
+    // Botões
+    prevBtn.style.display = currentStep > 1 ? 'block' : 'none';
+    
+    if (currentStep === totalSteps) {
+      nextBtn.style.display = 'none';
+      submitBtn.style.display = 'block';
+    } else {
+      nextBtn.style.display = 'block';
+      submitBtn.style.display = 'none';
+    }
+    
+    window.scrollTo(0,0);
+  }
+
+  nextBtn.addEventListener('click', () => {
+    const radios = document.getElementsByName('q' + currentStep);
+    let selected = false;
+    for (const r of radios) if (r.checked) selected = true;
+    
+    if (selected) {
+      currentStep++;
+      updateStep();
+    } else {
+      alert('Por favor, selecione uma opção antes de prosseguir.');
+    }
+  });
+
+  prevBtn.addEventListener('click', () => {
+    currentStep--;
+    updateStep();
+  });
+
+  quizForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    quizForm.style.display = 'none';
+    document.getElementById('sobre').style.display = 'none';
+    document.getElementById('resultado-section').style.display = 'block';
+    
+    // Lógica simples de resultado
+    const formData = new FormData(quizForm);
+    let counts = {A:0, B:0, C:0, D:0};
+    for(let val of formData.values()) counts[val]++;
+    
+    let top = Object.keys(counts).reduce((a, b) => counts[a] > counts[b] ? a : b);
+    
+    const results = {
+      A: { title: "Enfermagem / Saúde", desc: "Seu perfil é voltado para o cuidado humano e assistência à saúde.", img: "https://images.unsplash.com/photo-1576765608596-78b53a3b7dc1?q=80&w=800" },
+      B: { title: "Análise e Desenvolvimento de Sistemas", desc: "Você tem grande afinidade com lógica, tecnologia e inovação digital.", img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=800" },
+      C: { title: "Gestão da Produção Industrial", desc: "Seu foco está na organização, eficiência de processos e liderança corporativa.", img: "https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=800" },
+      D: { title: "Biotecnologia / Análises Clínicas", desc: "Você demonstra inclinação para o rigor científico, laboratórios e pesquisa.", img: "https://images.unsplash.com/photo-1579154204601-01588f351e67?q=80&w=800" }
+    };
+    
+    document.getElementById('result-title').innerText = results[top].title;
+    document.getElementById('result-desc').innerText = results[top].desc;
+    document.getElementById('result-img').style.backgroundImage = `url('${results[top].img}')`;
+  });
+</script>
 
 </body>
 </html>
