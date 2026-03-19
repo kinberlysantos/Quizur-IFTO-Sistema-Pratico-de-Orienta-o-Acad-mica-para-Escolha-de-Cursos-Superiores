@@ -80,6 +80,33 @@ body {
   max-width: 42rem;
   margin: 2rem auto;
   padding: 0 1rem;
+  min-height: 60vh;
+}
+
+/* Animações */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.95); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+.fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+.shake {
+  animation: shake 0.3s ease-in-out;
 }
 
 /* 3.1 Card de Pergunta */
@@ -89,6 +116,7 @@ body {
   overflow: hidden;
   box-shadow: var(--shadow-sm);
   margin-bottom: 2rem;
+  transition: all 0.3s ease;
 }
 
 .question-image {
@@ -155,7 +183,7 @@ body {
   display: none;
 }
 
-.option-letter {
+.option-number {
   width: 2.25rem;
   height: 2.25rem;
   background: var(--bg-light);
@@ -181,7 +209,7 @@ body {
   background: rgba(0, 148, 50, 0.08);
 }
 
-.option-card:has(input:checked) .option-letter {
+.option-card:has(input:checked) .option-number {
   background: var(--primary);
   color: white;
 }
@@ -240,6 +268,15 @@ body {
 .section-intro {
   text-align: center;
   margin-bottom: 2.5rem;
+  transition: all 0.5s ease;
+  overflow: hidden;
+}
+
+.section-intro.hide {
+  opacity: 0;
+  max-height: 0;
+  margin-bottom: 0;
+  pointer-events: none;
 }
 
 .section-intro h2 {
@@ -250,6 +287,38 @@ body {
 
 .section-intro p {
   color: var(--neutral-gray);
+}
+
+/* Feedback Visual na Seleção */
+.option-card:active {
+  transform: scale(0.98);
+}
+
+.option-card:has(input:checked) {
+  border-color: var(--primary);
+  background: rgba(0, 148, 50, 0.08);
+  animation: popIn 0.3s ease-out;
+}
+
+/* Botões com Feedback de Clique */
+.btn-next:active, .btn-prev:active {
+  transform: scale(0.95);
+}
+
+.btn-next:focus-visible, .btn-prev:focus-visible, .option-card:focus-within {
+  outline: 3px solid rgba(0, 148, 50, 0.4);
+  outline-offset: 2px;
+}
+
+/* Confetes (Simples) */
+.confetti {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background-color: var(--primary);
+  z-index: 1000;
+  pointer-events: none;
+  border-radius: 2px;
 }
 
 footer {

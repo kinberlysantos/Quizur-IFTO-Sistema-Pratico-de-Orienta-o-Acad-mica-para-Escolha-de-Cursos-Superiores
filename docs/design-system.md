@@ -54,7 +54,7 @@ Este documento serve como guia de referência de UI/UX para a interface do proje
 * **Estado Padrão:** Borda de 2px sólida e clara, fundo branco/escuro, transição de 0.2s.
 * **Estado Hover:** Mudança sutil na cor da borda para verde claro e fundo com opacidade reduzida da cor primária.
 * **Estado Selecionado (Checked):** Borda assume a cor `primary` (#009432), o fundo ganha um leve tingimento esverdeado e um ícone de "check" aparece à direita da opção.
-* **Identificador de Opção:** Um pequeno quadrado com bordas arredondadas contendo a letra da alternativa (A, B, C, D) à esquerda do texto da resposta.
+* **Identificador de Opção:** Um pequeno quadrado com bordas arredondadas contendo o número da alternativa (1, 2, 3, 4) à esquerda do texto da resposta.
 
 ### 3.3 Botões de Navegação
 * **Botão Anterior:** Estilo "Outline" (apenas bordas), texto em cinza, foco em voltar.
