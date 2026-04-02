@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nascimento Caotico</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main id="app">
+    <section class="intro">
+      <p class="eyebrow">Formulario hostil</p>
+      <h1>Insira sua Data de Nascimento (Boa sorte)</h1>
+      <p class="description">
+        Selecionar uma data nunca deveria ser tao ruim, mas aqui nos comprometemos com a experiencia errada.
+      </p>
+    </section>
+
+    <section class="chaos-container" aria-label="Selecao confusa de data">
+      <label class="field-label" for="dateSlider">O Slider da Imprecisao</label>
+      <input type="range" id="dateSlider" min="0" max="46000" value="23000">
+      <p class="display-line">Data Selecionada: <span id="display">Mova o slider para descobrir</span></p>
+
+      <label class="field-label" for="manualInput">Tentativa manual</label>
+      <input
+        type="text"
+        id="manualInput"
+        inputmode="numeric"
+        autocomplete="off"
+        placeholder="Digite aqui (se for rapido o bastante)"
+      >
+      <p id="inputStatus" class="status-message" aria-live="polite">
+        O campo apaga sozinho se voce hesitar por 3 segundos.
+      </p>
+    </section>
+
+    <section class="actions-area">
+      <button id="saveBtn" type="button">SALVAR NO BANCO</button>
+    </section>
+
+    <section class="log-panel" aria-live="polite">
+      <h2>Registro do caos</h2>
+      <p id="saveStatus">Nenhuma tentativa salva ainda.</p>
+    </section>
+  </main>
+
+  <script src="./script.js"></script>
+</body>
+</html>

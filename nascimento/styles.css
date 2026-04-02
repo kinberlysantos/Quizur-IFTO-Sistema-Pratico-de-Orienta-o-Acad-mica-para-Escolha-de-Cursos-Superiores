@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=Space+Grotesk:wght@400;500;700&display=swap');
+
+:root {
+  --bg: #f6df8f;
+  --bg-accent: #ff8f6b;
+  --panel: rgba(255, 248, 225, 0.82);
+  --text: #26170f;
+  --danger: #c1121f;
+  --highlight: #004e89;
+  --border: #26170f;
+  --shadow: 10px 10px 0 rgba(38, 23, 15, 0.9);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Space Grotesk', sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.5), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(0, 78, 137, 0.25), transparent 35%),
+    linear-gradient(135deg, var(--bg), var(--bg-accent));
+}
+
+#app {
+  width: min(92vw, 960px);
+  margin: 0 auto;
+  padding: 40px 0 140px;
+  position: relative;
+}
+
+.intro,
+.chaos-container,
+.log-panel {
+  background: var(--panel);
+  border: 4px solid var(--border);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(6px);
+}
+
+.intro {
+  padding: 28px;
+  transform: rotate(-1deg);
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--danger);
+}
+
+h1,
+h2 {
+  margin: 0;
+  font-family: 'Rubik Glitch', system-ui;
+  font-weight: 400;
+}
+
+h1 {
+  font-size: clamp(2.2rem, 4vw, 3.6rem);
+  line-height: 0.95;
+}
+
+.description {
+  max-width: 52ch;
+  margin: 18px 0 0;
+  font-size: 1.05rem;
+}
+
+.chaos-container {
+  margin-top: 28px;
+  padding: 32px;
+  border-style: dotted;
+  border-color: var(--danger);
+  transform: rotate(1deg);
+}
+
+.field-label {
+  display: block;
+  margin-bottom: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+#dateSlider {
+  width: 100%;
+  accent-color: var(--danger);
+  cursor: ew-resize;
+}
+
+.display-line {
+  margin: 16px 0 28px;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+#display {
+  color: var(--highlight);
+  text-decoration: underline wavy var(--danger);
+}
+
+#manualInput {
+  width: 100%;
+  padding: 16px 18px;
+  border: 4px solid var(--border);
+  background: #fff3d1;
+  color: var(--text);
+  font: inherit;
+  font-size: 1rem;
+  box-shadow: 6px 6px 0 rgba(38, 23, 15, 0.9);
+}
+
+#manualInput:focus {
+  outline: 4px dashed var(--highlight);
+  outline-offset: 6px;
+}
+
+.status-message {
+  margin: 14px 0 0;
+  min-height: 1.5em;
+  font-weight: 500;
+}
+
+.actions-area {
+  min-height: 220px;
+  margin-top: 20px;
+  position: relative;
+}
+
+#saveBtn {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  padding: 14px 22px;
+  border: 0;
+  background: var(--danger);
+  color: #fff8ea;
+  font: inherit;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: top 0.1s ease, left 0.1s ease, transform 0.1s ease, background 0.2s ease;
+  box-shadow: 8px 8px 0 rgba(38, 23, 15, 0.95);
+}
+
+#saveBtn:hover {
+  transform: rotate(-3deg) scale(1.03);
+  background: #9d0208;
+}
+
+.log-panel {
+  margin-top: 24px;
+  padding: 24px;
+  transform: rotate(-0.7deg);
+}
+
+#saveStatus {
+  margin: 14px 0 0;
+  font-size: 1rem;
+}
+
+@media (max-width: 640px) {
+  #app {
+    padding: 24px 0 120px;
+  }
+
+  .intro,
+  .chaos-container,
+  .log-panel {
+    transform: none;
+    box-shadow: 6px 6px 0 rgba(38, 23, 15, 0.9);
+  }
+
+  .chaos-container,
+  .intro,
+  .log-panel {
+    padding: 22px;
+  }
+
+  .actions-area {
+    min-height: 280px;
+  }
+
+  #saveBtn {
+    max-width: calc(100vw - 72px);
+    white-space: normal;
+  }
+}
