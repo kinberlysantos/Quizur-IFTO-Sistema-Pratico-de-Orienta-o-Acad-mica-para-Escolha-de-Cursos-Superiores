@@ -1,0 +1,23 @@
+VISÃO GERAL DA ARQUITETURA E ORGANIZAÇÃO
+
+O projeto Quizur está sendo estruturado seguindo um protótipo do padrão arquitetural MVC (Model-View-Controller). Essa organização separa as responsabilidades em três camadas principais:
+- Model (db.js): Gerencia a persistência de dados local usando IndexedDB.
+- View (index.html e styles.css): Define a interface e a apresentação visual para o usuário.
+- Controller (controller.js): Atua como o cérebro da aplicação, orquestrando a lógica entre a interface e os dados.
+
+Essa abordagem foi adotada para permitir um entendimento gradual e modular da arquitetura, facilitando a implementação de futuras funcionalidades sem comprometer a estabilidade do que já foi construído. O padrão MVC resolve o problema do "código espaguete", onde a lógica de negócio e a interface ficam misturadas, o que torna a manutenção difícil e propensa a erros. Com essa separação, é possível evoluir o design ou trocar o método de armazenamento de dados de forma independente.
+
+Abaixo, detalhamos os principais bloqueios identificados que impedem a evolução plena dessa arquitetura no momento:
+
+---
+
+PRINCIPAIS PROBLEMAS E BLOQUEIOS TÉCNICOS - PROJETO QUIZUR
+
+1. REDUNDÂNCIA E CONFLITO DE LÓGICA (SCRIPTS DUPLICADOS):
+A existência de dois arquivos de controle na raiz (controller.js e script.js) gera confusão no desenvolvimento. O controller.js utiliza uma abordagem modular com import/export e integração com IndexedDB, enquanto o script.js utiliza uma lógica mais antiga e direta. Embora apenas o controller.js esteja ativo no index.html, a manutenção fica comprometida pela falta de uma "fonte única de verdade" para a lógica do quiz.
+
+2. FRAGMENTAÇÃO NA CAPTAÇÃO DE LEADS (FORMULÁRIO DE REGISTRO):
+Há uma inconsistência entre o registro de interesse pós-quiz e a persistência de dados. Enquanto o progresso das perguntas é salvo via IndexedDB (db.js), o formulário de contato (registro-section no index.html e o arquivo formulario.html) não possui uma integração clara de salvamento ou envio. Além disso, existe uma duplicidade de interfaces para a mesma finalidade de cadastro de interessados.
+
+3. INCONSISTÊNCIA ARQUITETURAL E SILOS DE CÓDIGO:
+O subprojeto na pasta "nascimento/" opera de forma totalmente isolada da arquitetura principal. Ele não compartilha a camada de persistência (db.js), os padrões de estilo (variáveis CSS da raiz) ou a estrutura de componentes, o que dificulta a escalabilidade e a manutenção de uma identidade visual e funcional coesa em todo o projeto.
