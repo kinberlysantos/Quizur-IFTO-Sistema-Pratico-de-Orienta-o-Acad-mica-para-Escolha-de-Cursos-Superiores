@@ -1,4 +1,4 @@
-VISÃO GERAL DA ARQUITETURA E ORGANIZAÇÃO
+# VISÃO GERAL DA ARQUITETURA E ORGANIZAÇÃO
 
 O projeto Quizur está sendo estruturado seguindo um protótipo do padrão arquitetural MVC (Model-View-Controller). Essa organização separa as responsabilidades em três camadas principais:
 - Model (db.js): Gerencia a persistência de dados local usando IndexedDB.
@@ -11,7 +11,7 @@ Abaixo, detalhamos os principais bloqueios identificados que impedem a evoluçã
 
 ---
 
-PRINCIPAIS PROBLEMAS E BLOQUEIOS TÉCNICOS - PROJETO QUIZUR
+# PRINCIPAIS PROBLEMAS E BLOQUEIOS TÉCNICOS - PROJETO QUIZUR
 
 1. REDUNDÂNCIA E CONFLITO DE LÓGICA (SCRIPTS DUPLICADOS):
 A existência de dois arquivos de controle na raiz (controller.js e script.js) gera confusão no desenvolvimento. O controller.js utiliza uma abordagem modular com import/export e integração com IndexedDB, enquanto o script.js utiliza uma lógica mais antiga e direta. Embora apenas o controller.js esteja ativo no index.html, a manutenção fica comprometida pela falta de uma "fonte única de verdade" para a lógica do quiz.
