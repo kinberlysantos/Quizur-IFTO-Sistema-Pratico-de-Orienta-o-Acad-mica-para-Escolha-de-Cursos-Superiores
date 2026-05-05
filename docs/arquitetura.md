@@ -8,27 +8,27 @@ Este documento descreve a arquitetura profissional do projeto, integrando padrõ
 O sistema utiliza um arquivo de configuração isolado para proteger credenciais e caminhos do banco de dados.
 
 *   **Configuração:** O arquivo `config.ini` (ignorado pelo Git) armazena o caminho do SQLite.
-*   **Singleton Pattern:** A classe `Database.php` garante que exista apenas uma instância da conexão PDO em todo o ciclo de vida da requisição, otimizando recursos.
+*   **Singleton Pattern:** A classe `database.php` garante que exista apenas uma instância da conexão PDO em todo o ciclo de vida da requisição, otimizando recursos.
 
 ---
 
 ### 2. Abstração de Dados (Repository Pattern)
 Separamos completamente a lógica de acesso aos dados (SQL) da lógica de negócio.
 
-*   **Contrato (`IInscricaoRepository.php`):** Define uma interface obrigatória para garantir que qualquer implementação de repositório possua os métodos `save`, `find` e `delete`.
-*   **Implementação (`InscricaoRepository.php`):** Único local que contém SQL (PDO). As entidades do sistema não conhecem a estrutura das tabelas.
+*   **Contrato (`iInscricaoRepository.php`):** Define uma interface obrigatória para garantir que qualquer implementação de repositório possua os métodos `save`, `find` e `delete`.
+*   **Implementação (`inscricaoRepository.php`):** Único local que contém SQL (PDO). As entidades do sistema não conhecem a estrutura das tabelas.
 
 ---
 
 ### 3. Camada de Serviço e Injeção de Dependência (DI)
 As regras de negócio complexas residem na camada de Serviço, que é desacoplada através de DI.
 
-*   **Service (`InscricaoService.php`):** Recebe a *Interface* do Repositório via construtor. Isso permite trocar o banco de dados (ex: de SQLite para MySQL) sem alterar uma linha de código do serviço.
-*   **Exceções Customizadas:** Utiliza `BusinessRuleException.php` para sinalizar falhas de negócio de forma clara e tratável.
+*   **Service (`inscricaoService.php`):** Recebe a *Interface* do Repositório via construtor. Isso permite trocar o banco de dados (ex: de SQLite para MySQL) sem alterar uma linha de código do serviço.
+*   **Exceções Customizadas:** Utiliza `businessRuleException.php` para sinalizar falhas de negócio de forma clara e tratável.
 
 ---
 
-### 4. Controlador Enxuto (`InscricaoController.php`)
+### 4. Controlador Enxuto (`inscricaoController.php`)
 O Controller atua apenas como coordenador, sem conter lógica de validação ou SQL.
 
 *   **Estrutura:** Recebe o Service via Injeção de Dependência.

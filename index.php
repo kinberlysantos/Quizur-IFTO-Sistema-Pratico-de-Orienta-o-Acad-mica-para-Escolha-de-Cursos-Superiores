@@ -1,9 +1,9 @@
 <?php
 
 require_once 'middleware.php';
-require_once 'InscricaoRepository.php';
-require_once 'InscricaoService.php';
-require_once 'InscricaoController.php';
+require_once 'inscricaoRepository.php';
+require_once 'inscricaoService.php';
+require_once 'inscricaoController.php';
 
 // --- CONTAINER DE INJEÇÃO DE DEPENDÊNCIA (Manual) ---
 $repository = new InscricaoRepository();

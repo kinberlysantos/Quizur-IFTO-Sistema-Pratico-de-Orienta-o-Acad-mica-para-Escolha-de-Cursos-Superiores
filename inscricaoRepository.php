@@ -1,7 +1,7 @@
 <?php
 
-require_once 'IInscricaoRepository.php';
-require_once 'Database.php';
+require_once 'iInscricaoRepository.php';
+require_once 'database.php';
 
 class InscricaoRepository implements IInscricaoRepository {
     private $db;
