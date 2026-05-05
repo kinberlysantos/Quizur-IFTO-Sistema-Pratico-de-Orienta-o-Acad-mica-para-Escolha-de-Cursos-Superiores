@@ -1,8 +1,9 @@
 import { db } from './db.js';
+import { QuizService } from './service.js';
 
 /**
- * controller.js - Cérebro da Aplicação
- * Gerencia o fluxo do quiz, interação com o usuário e atualizações do DOM.
+ * controller.js - Cérebro da Aplicação (O Maestro)
+ * Gerencia o fluxo do quiz, interação com o usuário e coordena Model e Service.
  */
 
 const APP = {
@@ -24,7 +25,8 @@ const APP = {
     // Inputs de resultado
     resultTitle: document.getElementById('result-title'),
     resultDesc: document.getElementById('result-desc'),
-    resultImg: document.getElementById('result-img')
+    resultImg: document.getElementById('result-img'),
+    formRegistro: document.getElementById('registro-form')
   },
 
   async init() {
@@ -51,6 +53,34 @@ const APP = {
       e.preventDefault();
       this.finalizarQuiz();
     });
+
+    // Envio para o PHP Backend
+    if (this.elements.formRegistro) {
+      this.elements.formRegistro.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        formData.append('curso', this.elements.resultTitle.innerText);
+
+        try {
+          const response = await fetch('index.php/registrar', {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+          });
+          
+          const result = await response.json();
+          if (result.status === 'success') {
+            alert(result.message);
+            window.location.href = 'https://portal.ifto.edu.br';
+          } else {
+            alert('Erro: ' + result.message);
+          }
+        } catch (error) {
+          console.error('Erro na requisição:', error);
+          alert('Erro ao processar sua inscrição no servidor.');
+        }
+      });
+    }
 
     // Monitorar mudanças nos rádios para salvar progresso automaticamente
     this.elements.form.addEventListener('change', (e) => {
@@ -128,27 +158,27 @@ const APP = {
   },
 
   async finalizarQuiz() {
-    const formData = new FormData(this.elements.form);
-    let counts = { 1: 0, 2: 0, 3: 0, 4: 0 };
-    for (let val of formData.values()) counts[val]++;
+    try {
+      const formData = new FormData(this.elements.form);
+      
+      // DELEGAÇÃO: Chama o Service para processar as regras de negócio
+      const finalResult = QuizService.processarResultado(formData);
 
-    // Lógica de Resultado
-    let top = Object.keys(counts).reduce((a, b) => counts[a] > counts[b] ? a : b);
-    
-    const resultsMap = {
-      1: { title: "Enfermagem / Saúde", desc: "Seu perfil é voltado para o cuidado humano.", img: "https://images.unsplash.com/photo-1576765608596-78b53a3b7dc1?q=80&w=800" },
-      2: { title: "Análise de Sistemas", desc: "Você tem afinidade com lógica e tecnologia.", img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=800" },
-      3: { title: "Gestão Industrial", desc: "Foco em eficiência e processos.", img: "https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=800" },
-      4: { title: "Biotecnologia", desc: "Inclinação para rigor científico e laboratório.", img: "https://images.unsplash.com/photo-1579154204601-01588f351e67?q=80&w=800" }
-    };
+      // PERSISTÊNCIA: Salva no Banco (Model)
+      await db.salvarResultado(finalResult);
+      await db.limparProgresso();
 
-    const finalResult = resultsMap[top];
+      // VIEW: Atualiza a interface para o Resultado
+      this.exibirResultado(finalResult);
+      
+      this.celebrate();
+    } catch (error) {
+      console.error("Erro ao finalizar quiz:", error);
+      alert("Houve um erro ao processar seu resultado. Por favor, tente novamente.");
+    }
+  },
 
-    // Salvar no Banco
-    await db.salvarResultado({ top, ...finalResult });
-    await db.limparProgresso();
-
-    // Atualizar UI para Resultado
+  exibirResultado(finalResult) {
     this.elements.form.style.display = 'none';
     this.elements.sectionIntro.style.display = 'none';
     this.elements.resultadoSection.style.display = 'block';
@@ -158,12 +188,9 @@ const APP = {
     this.elements.resultDesc.innerText = finalResult.desc;
     this.elements.resultImg.style.backgroundImage = `url('${finalResult.img}')`;
     
-    // Exibe o formulário de registro após o resultado
     if (this.elements.registroSection) {
       this.elements.registroSection.style.display = 'block';
     }
-
-    this.celebrate();
   },
 
   triggerShake() {
