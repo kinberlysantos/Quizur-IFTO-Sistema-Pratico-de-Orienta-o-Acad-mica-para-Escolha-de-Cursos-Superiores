@@ -62,43 +62,70 @@
     </section>
 
     <form id="quiz-form" action="index.php/finalizar" method="POST">
-      <?php for ($i = 1; $i <= 10; $i++): ?>
+      <?php 
+        $perguntas = [
+          1 => [
+            "text" => "Qual área mais desperta seu interesse?",
+            "img" => "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800",
+            "opcoes" => ["Saúde", "Tecnologia", "Gestão", "Ciência"]
+          ],
+          2 => [
+            "text" => "Você prefere trabalhar:",
+            "img" => "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800",
+            "opcoes" => ["Pessoas", "Sistemas", "Processos", "Análises"]
+          ],
+          3 => [
+            "text" => "Seu perfil comportamental é mais:",
+            "img" => "https://images.unsplash.com/photo-1454165833767-027ffea9e77b?q=80&w=800",
+            "opcoes" => ["Empático", "Investigativo", "Líder", "Analítico"]
+          ],
+          4 => [
+            "text" => "Você gosta de atividades que envolvem:",
+            "img" => "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800",
+            "opcoes" => ["Clínica", "Software", "Indústria", "Laboratório"]
+          ],
+          5 => [
+            "text" => "Prefere resolver problemas relacionados a:",
+            "img" => "https://images.unsplash.com/photo-1507413245164-6160d8298b31?q=80&w=800",
+            "opcoes" => ["Bem-estar", "Automação", "Produtividade", "Qualidade"]
+          ],
+          6 => [
+            "text" => "Seu ambiente ideal de trabalho seria:",
+            "img" => "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800",
+            "opcoes" => ["Hospital", "Tech/Home", "Indústria", "Laboratório"]
+          ],
+          7 => [
+            "text" => "Você prefere atividades predominantemente:",
+            "img" => "https://images.unsplash.com/photo-1551288049-bbbda540d379?q=80&w=800",
+            "opcoes" => ["Humanizadas", "Lógicas", "Estratégicas", "Técnicas"]
+          ],
+          8 => [
+            "text" => "Seu objetivo profissional principal é:",
+            "img" => "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=800",
+            "opcoes" => ["Pacientes", "Inovação", "Otimização", "Diagnóstico"]
+          ],
+          9 => [
+            "text" => "Com qual dessas ferramentas você se identifica mais?",
+            "img" => "https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=800",
+            "opcoes" => ["Estetoscópio", "Computador", "Planilha", "Microscópio"]
+          ],
+          10 => [
+            "text" => "Como você se vê daqui a 5 anos?",
+            "img" => "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=800",
+            "opcoes" => ["Saúde", "Software", "Gestão", "Diagnóstico"]
+          ]
+        ];
+
+        for ($i = 1; $i <= 10; $i++): 
+          $q = $perguntas[$i];
+      ?>
         <article class="question-card <?= $i === 1 ? 'active' : '' ?>" id="q<?= $i ?>">
+          <div class="question-image" style="background-image: url('<?= $q['img'] ?>');"></div>
           <div class="question-body">
             <span class="category-label">Questão <?= $i ?></span>
-            <h3 class="question-text">
-              <?php
-                $perguntas = [
-                  1 => "Qual área mais desperta seu interesse?",
-                  2 => "Você prefere trabalhar:",
-                  3 => "Seu perfil comportamental é mais:",
-                  4 => "Você gosta de atividades que envolvem:",
-                  5 => "Prefere resolver problemas relacionados a:",
-                  6 => "Seu ambiente ideal de trabalho seria:",
-                  7 => "Você prefere atividades predominantemente:",
-                  8 => "Seu objetivo profissional principal é:",
-                  9 => "Com qual dessas ferramentas você se identifica mais?",
-                  10 => "Como você se vê daqui a 5 anos?"
-                ];
-                echo $perguntas[$i];
-              ?>
-            </h3>
+            <h3 class="question-text"><?= $q['text'] ?></h3>
             <div class="options-group">
-              <?php 
-                $opcoes = [
-                  1 => ["Saúde", "Tecnologia", "Gestão", "Ciência"],
-                  2 => ["Pessoas", "Sistemas", "Processos", "Análises"],
-                  3 => ["Empático", "Investigativo", "Líder", "Analítico"],
-                  4 => ["Clínica", "Software", "Indústria", "Laboratório"],
-                  5 => ["Bem-estar", "Automação", "Produtividade", "Qualidade"],
-                  6 => ["Hospital", "Tech/Home", "Indústria", "Laboratório"],
-                  7 => ["Humanizadas", "Lógicas", "Estratégicas", "Técnicas"],
-                  8 => ["Pacientes", "Inovação", "Otimização", "Diagnóstico"],
-                  9 => ["Estetoscópio", "Computador", "Planilha", "Microscópio"],
-                  10 => ["Saúde", "Software", "Gestão", "Diagnóstico"]
-                ];
-                foreach ($opcoes[$i] as $idx => $label): 
-              ?>
+              <?php foreach ($q['opcoes'] as $idx => $label): ?>
                 <label class="option-card">
                   <input type="radio" name="q<?= $i ?>" value="<?= $idx + 1 ?>" required>
                   <span class="option-number"><?= $idx + 1 ?></span>
