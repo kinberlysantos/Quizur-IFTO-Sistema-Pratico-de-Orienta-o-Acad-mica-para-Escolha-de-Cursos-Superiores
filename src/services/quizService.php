@@ -1,6 +1,10 @@
 <?php
 
+require_once 'iResultadoRepository.php';
+require_once 'businessRuleException.php';
+
 class QuizService {
+    private $repository;
     private $resultsMap = [
         1 => [
             "title" => "Enfermagem / Saúde",
@@ -24,6 +28,10 @@ class QuizService {
         ]
     ];
 
+    public function __construct(IResultadoRepository $repository) {
+        $this->repository = $repository;
+    }
+
     public function calcularResultado(array $respostas) {
         if (empty($respostas)) {
             throw new BusinessRuleException("Nenhuma resposta enviada.");
@@ -40,6 +48,11 @@ class QuizService {
         arsort($counts);
         $top = key($counts);
 
-        return array_merge(['perfil' => $top], $this->resultsMap[$top]);
+        $resultado = array_merge(['perfil' => $top], $this->resultsMap[$top]);
+        
+        // Persistência na Camada de Serviço
+        $this->repository->save($resultado);
+
+        return $resultado;
     }
 }

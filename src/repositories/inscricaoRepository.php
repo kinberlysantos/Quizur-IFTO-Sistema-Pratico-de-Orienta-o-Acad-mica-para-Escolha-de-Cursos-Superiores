@@ -6,20 +6,8 @@ require_once 'database.php';
 class InscricaoRepository implements IInscricaoRepository {
     private $db;
 
-    public function __construct() {
-        $this->db = Database::getInstance();
-        $this->createTable();
-    }
-
-    private function createTable() {
-        $sql = "CREATE TABLE IF NOT EXISTS inscricoes (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            nome TEXT NOT NULL,
-            email TEXT NOT NULL,
-            curso TEXT,
-            timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
-        )";
-        $this->db->exec($sql);
+    public function __construct(PDO $db) {
+        $this->db = $db;
     }
 
     public function save(array $data) {

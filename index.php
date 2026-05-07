@@ -1,32 +1,44 @@
 <?php
+// Configuração de caminhos e autoload simples
+require_once 'src/middleware/middleware.php';
+require_once 'src/database/database.php';
+require_once 'src/database/migrationManager.php';
+require_once 'src/exceptions/businessRuleException.php';
 
-require_once 'middleware.php';
-require_once 'database.php';
-require_once 'businessRuleException.php';
+// Interfaces
+require_once 'src/interfaces/iInscricaoRepository.php';
+require_once 'src/interfaces/iResultadoRepository.php';
 
 // Repositories
-require_once 'inscricaoRepository.php';
-require_once 'resultadoRepository.php';
+require_once 'src/repositories/inscricaoRepository.php';
+require_once 'src/repositories/resultadoRepository.php';
 
 // Services
-require_once 'inscricaoService.php';
-require_once 'quizService.php';
+require_once 'src/services/inscricaoService.php';
+require_once 'src/services/quizService.php';
 
 // Controllers
-require_once 'inscricaoController.php';
-require_once 'quizController.php';
+require_once 'src/controllers/inscricaoController.php';
+require_once 'src/controllers/quizController.php';
 
 // Routing
-require_once 'router.php';
+require_once 'src/routes/router.php';
 
 // --- CONTAINER DE INJEÇÃO DE DEPENDÊNCIA (Manual) ---
-$inscricaoRepo = new InscricaoRepository();
+$pdo = Database::getInstance();
+
+// Executar Migrations
+$migrationManager = new \App\Database\MigrationManager($pdo, 'src/migrations');
+$migrationManager->migrate();
+
+$inscricaoRepo = new InscricaoRepository($pdo);
+...
 $inscricaoService = new InscricaoService($inscricaoRepo);
 $inscricaoController = new InscricaoController($inscricaoService);
 
-$quizRepo = new ResultadoRepository();
-$quizService = new QuizService();
-$quizController = new QuizController($quizService, $quizRepo);
+$quizRepo = new ResultadoRepository($pdo);
+$quizService = new QuizService($quizRepo);
+$quizController = new QuizController($quizService);
 
 $router = new Router($quizController, $inscricaoController);
 

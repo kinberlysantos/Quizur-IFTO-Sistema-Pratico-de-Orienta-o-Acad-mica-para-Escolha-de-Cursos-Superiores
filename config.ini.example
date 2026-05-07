@@ -1,0 +1,3 @@
+[database]
+path = database.sqlite
+version = 1.0.0
