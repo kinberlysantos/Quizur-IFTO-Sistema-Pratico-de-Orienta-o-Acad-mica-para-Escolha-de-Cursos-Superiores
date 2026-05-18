@@ -1,0 +1,22 @@
+// Esquema do Banco de Dados Quizur IFTO
+
+Table inscricoes {
+  id integer [primary key, increment]
+  nome varchar [not null]
+  email varchar [not null]
+  curso varchar
+  timestamp timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table resultados {
+  id integer [primary key, increment]
+  perfil integer
+  titulo varchar
+  timestamp timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table migrations {
+  id integer [primary key, increment]
+  migration_name varchar [not null]
+  executed_at timestamp [default: `CURRENT_TIMESTAMP`]
+}
