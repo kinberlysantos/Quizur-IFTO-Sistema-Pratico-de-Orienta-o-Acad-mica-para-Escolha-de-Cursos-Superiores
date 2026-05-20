@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quizur IFTO - Orientação Acadêmica</title>
-  <link rel="icon" type="image/png" href="logo.png">
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="icon" type="image/png" href="/view/images/logo.png">
+  <link rel="stylesheet" href="/view/css/styles.css">
   <style>
     .hidden { display: none; }
     .question-card { display: none; }
@@ -16,7 +16,7 @@
 
 <header class="header-container">
   <div class="header-content">
-    <div class="logo"><img src="view/images/logo.png" alt="Quizur IFTO Logo" style="height: 40px; vertical-align: middle; margin-right: 10px;">Quizur IFTO</div>
+    <div class="logo"><img src="/view/images/logo.png" alt="Quizur IFTO Logo" style="height: 40px; vertical-align: middle; margin-right: 10px;">Quizur IFTO</div>
     <div class="progress-info">Questão <span id="current-step">1</span> de 10</div>
   </div>
   <div class="progress-bar-container">
