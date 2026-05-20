@@ -1,43 +1,21 @@
 <?php
-// Configuração de caminhos e autoload simples
-require_once 'src/middleware/middleware.php';
-require_once 'src/database/database.php';
-require_once 'src/database/migrationManager.php';
-require_once 'src/exceptions/businessRuleException.php';
-
-// Interfaces
-require_once 'src/interfaces/iInscricaoRepository.php';
-require_once 'src/interfaces/iResultadoRepository.php';
-
-// Repositories
-require_once 'src/repositories/inscricaoRepository.php';
-require_once 'src/repositories/resultadoRepository.php';
-
-// Services
-require_once 'src/services/inscricaoService.php';
-require_once 'src/services/quizService.php';
-
-// Controllers
-require_once 'src/controllers/inscricaoController.php';
-require_once 'src/controllers/quizController.php';
-
-// Routing
-require_once 'src/routes/router.php';
+require_once 'config.php';
+require_once 'autoload.php';
 
 // --- CONTAINER DE INJEÇÃO DE DEPENDÊNCIA (Manual) ---
 $pdo = Database::getInstance();
 
 // Executar Migrations
-$migrationManager = new \App\Database\MigrationManager($pdo, 'src/migrations');
+$migrationManager = new MigrationManager($pdo, 'app/migration');
 $migrationManager->migrate();
 
 $inscricaoRepo = new InscricaoRepository($pdo);
-...
-$inscricaoService = new InscricaoService($inscricaoRepo);
-$inscricaoController = new InscricaoController($inscricaoService);
-
 $quizRepo = new ResultadoRepository($pdo);
+
+$inscricaoService = new InscricaoService($inscricaoRepo);
 $quizService = new QuizService($quizRepo);
+
+$inscricaoController = new InscricaoController($inscricaoService);
 $quizController = new QuizController($quizService);
 
 $router = new Router($quizController, $inscricaoController);
@@ -48,10 +26,11 @@ $uri = $_SERVER['REQUEST_URI'];
 
 // Middleware Global
 if ($method === 'POST') {
+    require_once 'app/middleware/Middleware.php';
     sanitizeInput();
 }
 
 $resultado = $router->route($uri, $method);
 
 // --- RENDERIZAÇÃO DA VIEW ---
-include 'view.php';
+include VIEW_PATH . '/view.php';

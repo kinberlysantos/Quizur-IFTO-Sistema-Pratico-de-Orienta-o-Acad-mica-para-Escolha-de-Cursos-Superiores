@@ -1,10 +1,5 @@
 <?php
 
-namespace App\Database;
-
-use PDO;
-use Exception;
-
 class MigrationManager {
     private $pdo;
     private $migrationsPath;

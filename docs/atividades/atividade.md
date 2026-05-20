@@ -1,60 +1,48 @@
-# Atividades
+# Atividade: Reestruturação do Projeto (MVC/Services)
 
-## Passo 1: Definição de Entidades e Atributos
-Antes de abrir a ferramenta, cada grupo deve listar as entidades do seu projeto (ex: `users`, `orders`, `products`).
+## Passo 1: O Grande "Move" (Criação de Pastas)
+Abram o terminal no diretório do projeto e criem a estrutura hierárquica baseada no diagrama:
 
-Definam o que é essencial: Quais campos não podem ser nulos (`not null`)? Quais campos devem ser únicos (`unique`)?
+1.  Criem a pasta `app/` e, dentro dela, as subpastas: `controller/`, `model/`, `middleware/`, `services/`, `migration/` e `router/`.
+2.  Criem a pasta `view/` para os arquivos de interface.
+3.  Mantenham na raiz apenas o `index.php`, `config.php` e `autoload.php`.
 
-## Passo 2: O Ambiente dbdiagram.io
-Acessem o [dbdiagram.io](https://dbdiagram.io).
+## Passo 2: Isolando o Banco de Dados
+Movam o seu arquivo de banco de dados (ex: `banco.sqlite`) para a pasta de destino correta conforme o diagrama.
 
-Explorem a interface: à esquerda o código DBML, à direita a visualização gráfica em tempo real.
+> **Atenção:** Atualizem o caminho da conexão no seu `config.php` ou `Database.php` para apontar para o novo local.
 
-Apaguem o exemplo padrão e preparem-se para transcrever a lógica do projeto.
+## Passo 3: Organizando o Front-end
+Movam todos os seus arquivos `.html`, `.css` e `.js` para dentro da pasta `view/`.
 
-## Passo 3: Codificando o Esquema (Sintaxe DBML)
-Comecem a traduzir as entidades para blocos de código.
+*   **Dica Profissional:** Se o projeto for crescer, dentro de `view/` criem subpastas `css/` e `js/`.
+*   Ajustem os links de importação nos arquivos HTML para refletir o novo caminho relativo.
 
-```dbml
-Table usuarios { 
-  id integer [primary key]
-  nome varchar
-  email varchar [unique]
-  criado_em timestamp
-}
-```
+## Passo 4: Implementando o `autoload.php`
+Criem um arquivo `autoload.php` na raiz. Ele deve ser responsável por registrar a função `spl_autoload_register`.
 
-> **Desafio:** Apliquem tipos de dados condizentes com o que discutimos em aula sobre performance.
+O objetivo é que, ao instanciar `new UsuarioController()`, o PHP procure automaticamente em `app/controller/UsuarioController.php`.
 
-## Passo 4: Estabelecendo Vínculos (Relacionamentos)
-Conectem as tabelas. No DBML, isso é feito de forma muito intuitiva:
+## Passo 5: Refatoração do Ponto de Entrada (`index.php`)
+O `index.php` agora deve ser "limpo". Sua única função é:
+1. Incluir o `config.php`.
+2. Incluir o `autoload.php`.
+3. Chamar o router para decidir qual controller deve ser executado.
 
-Utilizem o operador `>` para muitos-para-um, `<` para um-para-muitos e `-` para um-para-um.
+## Passo 6: Validação da Estrutura
+Após a movimentação dos arquivos, o sistema provavelmente "quebrará" (erros de caminhos e includes).
 
-*Exemplo:* `Ref: pedidos.usuario_id > usuarios.id` (Muitos pedidos pertencem a um usuário).
-
-## Passo 5: Refatoração do Modelo (Peer Review)
-Troquem de lugar com outro grupo. Analisem o diagrama do colega:
-
-* Faltou algum relacionamento?
-* Existe algum dado repetido que poderia virar uma nova tabela (Normalização)?
-* O modelo atende aos requisitos do "Service" e "Repository" criados na aula passada?
-
-## Passo 6: Exportação e Documentação
-O diagrama não deve ficar apenas na ferramenta.
-
-1. **Exportem** o projeto em formato PDF ou PNG para incluir na documentação do projeto.
-2. **Exportem** o código SQL (MySQL ou PostgreSQL) gerado automaticamente pela ferramenta para uso futuro.
+**Tarefa:** Corrijam todos os caminhos (paths) até que a aplicação volte a funcionar perfeitamente sob a nova estrutura.
+*   Usem o `var_dump(__DIR__)` para ajudar a rastrear onde os caminhos estão se perdendo.
 
 ---
 
-## Entrega e Versionamento
-* **Criação do arquivo:** Na raiz do projeto autoral, criem uma pasta chamada `docs/database`.
-* **Arquivo DBML:** Salvem o código gerado no dbdiagram em um arquivo chamado `schema.dbml`.
-* **Commit Semântico:**
-  ```bash
-  git add docs/database
-  git commit -m "docs: modelagem do banco de dados e diagrama ER em DBML"
-  git push origin main
-  ```
-* **Critério de Sucesso:** O link do GitHub deve conter a pasta `docs` com o arquivo `.dbml`.
+## Entrega e Versionamento Direto
+O commit deve ser feito apenas após a confirmação de que o sistema está rodando.
+
+1.  **Teste de Fogo:** Abram o navegador e tentem realizar um ciclo completo (Cadastro -> Listagem -> Login).
+2.  **Stage Total:** `git add .`
+3.  **Commit Único e Descritivo:** `git commit -m "feat: reestruturação completa de pastas conforme padrão MVC/Services"`
+4.  **Push:** `git push origin main`
+
+> **Aviso de Peer:** "Sem branch, o cuidado dobra". Antes de dar o `git add .`, certifique-se de que não esqueceu nenhum arquivo temporário ou de teste solto na raiz.

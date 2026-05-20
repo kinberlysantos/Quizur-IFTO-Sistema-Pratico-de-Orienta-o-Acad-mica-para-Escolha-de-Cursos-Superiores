@@ -1,7 +1,5 @@
 <?php
 
-require_once 'iResultadoRepository.php';
-
 class ResultadoRepository implements IResultadoRepository {
     private $db;
 

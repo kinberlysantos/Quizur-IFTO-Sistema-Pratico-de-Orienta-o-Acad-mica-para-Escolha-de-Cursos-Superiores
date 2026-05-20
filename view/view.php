@@ -16,7 +16,7 @@
 
 <header class="header-container">
   <div class="header-content">
-    <div class="logo"><img src="logo.png" alt="Quizur IFTO Logo" style="height: 40px; vertical-align: middle; margin-right: 10px;">Quizur IFTO</div>
+    <div class="logo"><img src="view/images/logo.png" alt="Quizur IFTO Logo" style="height: 40px; vertical-align: middle; margin-right: 10px;">Quizur IFTO</div>
     <div class="progress-info">Questão <span id="current-step">1</span> de 10</div>
   </div>
   <div class="progress-bar-container">

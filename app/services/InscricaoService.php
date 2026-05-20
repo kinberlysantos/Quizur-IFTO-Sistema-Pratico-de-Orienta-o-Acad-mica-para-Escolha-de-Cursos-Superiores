@@ -1,7 +1,5 @@
 <?php
 
-require_once 'businessRuleException.php';
-
 class InscricaoService {
     private $repository;
 

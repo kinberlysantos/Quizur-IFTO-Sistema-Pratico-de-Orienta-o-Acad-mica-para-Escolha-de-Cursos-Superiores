@@ -5,8 +5,7 @@ class Database {
     private $pdo;
 
     private function __construct() {
-        $config = parse_ini_file('config.ini');
-        $this->pdo = new PDO("sqlite:" . $config['path']);
+        $this->pdo = new PDO("sqlite:" . DB_PATH);
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 

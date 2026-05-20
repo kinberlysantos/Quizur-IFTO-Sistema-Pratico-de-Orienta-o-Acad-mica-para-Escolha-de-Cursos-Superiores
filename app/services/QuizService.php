@@ -1,8 +1,5 @@
 <?php
 
-require_once 'iResultadoRepository.php';
-require_once 'businessRuleException.php';
-
 class QuizService {
     private $repository;
     private $resultsMap = [
