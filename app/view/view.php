@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quizur IFTO - Orientação Acadêmica</title>
-  <link rel="icon" type="image/png" href="/view/images/logo.png">
-  <link rel="stylesheet" href="/view/css/styles.css">
+  <link rel="icon" type="image/png" href="/app/view/images/logo.png">
+  <link rel="stylesheet" href="/app/view/css/styles.css">
   <style>
     .hidden { display: none; }
     .question-card { display: none; }
@@ -16,7 +16,7 @@
 
 <header class="header-container">
   <div class="header-content">
-    <div class="logo"><img src="/view/images/logo.png" alt="Quizur IFTO Logo" style="height: 40px; vertical-align: middle; margin-right: 10px;">Quizur IFTO</div>
+    <div class="logo"><img src="/app/view/images/logo.png" alt="Quizur IFTO Logo" style="height: 40px; vertical-align: middle; margin-right: 10px;">Quizur IFTO</div>
     <div class="progress-info">Questão <span id="current-step">1</span> de 10</div>
   </div>
   <div class="progress-bar-container">
@@ -38,20 +38,9 @@
         </div>
       </article>
 
-      <article class="question-card active" style="margin-top: 2rem; padding: 2rem;">
+      <article class="question-card active" style="margin-top: 2rem; padding: 2rem; text-align: center;">
         <h2 style="margin-bottom: 1rem;">Interessado neste curso?</h2>
-        <form action="index.php/registrar" method="POST" class="options-group">
-          <input type="hidden" name="curso" value="<?= $resultado['title'] ?>">
-          <div style="margin-bottom: 1rem;">
-            <label style="display:block; font-weight: 700; margin-bottom: 0.5rem;">Nome Completo</label>
-            <input type="text" name="nome" required style="width: 100%; padding: 0.75rem; border: 2px solid var(--borders); border-radius: var(--radius-md);">
-          </div>
-          <div style="margin-bottom: 1rem;">
-            <label style="display:block; font-weight: 700; margin-bottom: 0.5rem;">E-mail</label>
-            <input type="email" name="email" required style="width: 100%; padding: 0.75rem; border: 2px solid var(--borders); border-radius: var(--radius-md);">
-          </div>
-          <button type="submit" class="btn-next">Enviar e Acessar Portal</button>
-        </form>
+        <a href="https://portal.ifto.edu.br/araguaina" target="_blank" class="btn-next" style="display: inline-block; text-decoration: none;">Acessar Portal do IFTO</a>
       </article>
     </section>
   <?php else: ?>

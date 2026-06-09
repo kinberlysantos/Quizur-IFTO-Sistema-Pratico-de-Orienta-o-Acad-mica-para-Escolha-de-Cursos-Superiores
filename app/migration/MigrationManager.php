@@ -1,12 +1,17 @@
 <?php
 
+require_once 'CreateInscricoesTable.php';
+require_once 'CreateResultadosTable.php';
+
 class MigrationManager {
     private $pdo;
-    private $migrationsPath;
+    private $migrations = [
+        'CreateInscricoesTable' => '001_create_inscricoes_table',
+        'CreateResultadosTable' => '002_create_resultados_table'
+    ];
 
-    public function __construct(PDO $pdo, string $migrationsPath) {
+    public function __construct(PDO $pdo) {
         $this->pdo = $pdo;
-        $this->migrationsPath = $migrationsPath;
         $this->createMigrationsTable();
     }
 
@@ -20,14 +25,11 @@ class MigrationManager {
 
     public function migrate() {
         $executedMigrations = $this->getExecutedMigrations();
-        $files = glob($this->migrationsPath . "/*.sql");
-        sort($files);
 
-        foreach ($files as $file) {
-            $name = basename($file);
+        foreach ($this->migrations as $className => $name) {
             if (!in_array($name, $executedMigrations)) {
-                $sql = file_get_contents($file);
-                $this->pdo->exec($sql);
+                $migration = new $className();
+                $migration->up($this->pdo);
                 $this->saveMigration($name);
             }
         }

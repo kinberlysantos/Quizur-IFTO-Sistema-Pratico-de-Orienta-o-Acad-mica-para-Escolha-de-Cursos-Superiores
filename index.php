@@ -6,7 +6,7 @@ require_once 'autoload.php';
 $pdo = Database::getInstance();
 
 // Executar Migrations
-$migrationManager = new MigrationManager($pdo, 'app/migration');
+$migrationManager = new MigrationManager($pdo);
 $migrationManager->migrate();
 
 $inscricaoRepo = new InscricaoRepository($pdo);
